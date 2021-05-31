@@ -129,10 +129,8 @@ public class Transaccion {
 
 	@Override
 	public String toString() {
-		return "Transaccion [id=" + id + ", valor=" + valor + ", fecha=" + fecha + ", tipo=" + tipo + ", cuenta="
-				+ cuenta + "]";
+		return "Transaccion [id=" + id + ", valor=" + valor + ", fecha=" + fecha + ", tipo=" + tipo.toString() + ", cuenta="
+				+ cuenta.toString() + "]";
 	}
-	
-	
 	
 }

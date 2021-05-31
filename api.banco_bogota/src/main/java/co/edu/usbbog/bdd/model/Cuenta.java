@@ -141,11 +141,11 @@ public class Cuenta {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
-	
-	
 
+	@Override
+	public String toString() {
+		return "Cuenta [num=" + num + ", cedula=" + cedula + ", nombre=" + nombre + ", telefono=" + telefono
+				+ ", saldo=" + saldo + ", ciudad=" + ciudad.toString() + "]";
+	}
+	
 }

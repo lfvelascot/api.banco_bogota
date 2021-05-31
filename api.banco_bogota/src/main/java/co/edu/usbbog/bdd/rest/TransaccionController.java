@@ -23,34 +23,60 @@ public class TransaccionController {
 	@Autowired
 	ITransaccion it;
 	
-	@PostMapping("/create") //localhost:3001/ciudad/create
+	@PostMapping("/create") 
 	public void insertTransaccion(@RequestBody Transaccion c) {
 		it.save(c);
 	}
 	
 	@GetMapping("/all")
 	public List<Transaccion>findAllTransacciones() {
-		return it.findAll();
+		List<Transaccion> l = it.findAll();
+		if (l.isEmpty() || l.equals(null)) {
+			throw new RuntimeException("No hay transacciones registradas");
+		} else {
+			return l;
+		}
+		
 	}
 	
 	@GetMapping("/find/{id}")
 	public Optional<Transaccion> findTransaccion(@PathVariable("id") long id) {
-		return it.findById(id);
+		Optional<Transaccion> t = it.findById(id);
+		if (!t.equals(null)) {
+			return t;
+		} else {
+            throw new RuntimeException("Tramsaccion identificada con el ID: "+id+" no encontrado");
+		}
 	}
 	
 	@GetMapping("/count")
 	public long coundTransaccion() {
-		return it.count();
+		long c = it.count();
+		if (c != 0) {
+			return c;
+		} else {
+            throw new RuntimeException("No hay transacciones registradas");
+		}
 	}
 	
 	@DeleteMapping("/delete/{id}")
 	public void deleteTransaccion(@PathVariable("id") long id) {
-		it.deleteById(id);
+		Optional<Transaccion> t = it.findById(id);
+		if (!t.equals(null)) {
+			it.deleteById(id);
+		} else {
+            throw new RuntimeException("Tramsaccion identificada con el ID: "+id+" no encontrado");
+		}
 	}
 	
 	@PutMapping("/update")
 	public void updateTransaccion(@RequestBody Transaccion c) {
-		it.save(c);
+		Optional<Transaccion> t = it.findById(c.getId());
+		if (!t.equals(null)) {
+			it.save(c);
+		} else {
+            throw new RuntimeException("Tramsaccion identificada con el ID: "+c.getId()+" no encontrado");
+		}
 	}
 	
 }

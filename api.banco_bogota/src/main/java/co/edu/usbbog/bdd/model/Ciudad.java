@@ -74,5 +74,4 @@ public class Ciudad {
 	public String toString() {
 		return "Ciudad [id=" + id + ", nombre=" + nombre + "]";
 	}
-	
 }
