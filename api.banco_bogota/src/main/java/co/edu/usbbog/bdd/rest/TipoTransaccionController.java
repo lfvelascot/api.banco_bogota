@@ -59,7 +59,7 @@ public class TipoTransaccionController {
 	@DeleteMapping("/delete/{id}")
 	public void deleteTipoTransaccion(@PathVariable("id") long id) {
 		Optional<TipoTransaccion> tt = itt.findById(id);
-		if (!tt.equals(null)) {
+		if (!tt.isEmpty()) {
 			itt.deleteById(id);
 		} else {
 			throw new RuntimeException("Tipo de Tramsaccion identificada con el ID: " + id + " no encontrado");

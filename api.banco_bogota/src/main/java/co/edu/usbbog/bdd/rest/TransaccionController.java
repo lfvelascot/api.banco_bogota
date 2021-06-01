@@ -62,7 +62,7 @@ public class TransaccionController {
 	@DeleteMapping("/delete/{id}")
 	public void deleteTransaccion(@PathVariable("id") long id) {
 		Optional<Transaccion> t = it.findById(id);
-		if (!t.equals(null)) {
+		if (!t.isEmpty()) {
 			it.deleteById(id);
 		} else {
             throw new RuntimeException("Tramsaccion identificada con el ID: "+id+" no encontrado");
@@ -72,7 +72,7 @@ public class TransaccionController {
 	@PutMapping("/update")
 	public void updateTransaccion(@RequestBody Transaccion c) {
 		Optional<Transaccion> t = it.findById(c.getId());
-		if (!t.equals(null)) {
+		if (!t.isEmpty()) {
 			it.save(c);
 		} else {
             throw new RuntimeException("Tramsaccion identificada con el ID: "+c.getId()+" no encontrado");

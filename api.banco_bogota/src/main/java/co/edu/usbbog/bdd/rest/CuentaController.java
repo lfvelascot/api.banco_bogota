@@ -59,7 +59,7 @@ public class CuentaController {
 	@DeleteMapping("/delete/{id}")
 	public void deleteCuenta(@PathVariable("id") long id) {
 		Optional<Cuenta> cu = ic.findById(id);
-		if (!cu.equals(null)) {
+		if (!cu.isEmpty()) {
 			ic.deleteById(id);
 		} else {
 			throw new RuntimeException("Cuenta identificada con el ID: " + id + " no encontrado");
